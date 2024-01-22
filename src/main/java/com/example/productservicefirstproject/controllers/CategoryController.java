@@ -1,2 +1,4 @@
-package com.example.productservicefirstproject.controllers;public class CategoryController {
+package com.example.productservicefirstproject.controllers;
+
+public class CategoryController {
 }

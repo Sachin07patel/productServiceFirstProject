@@ -1,2 +1,16 @@
-package com.example.productservicefirstproject.controllers;public class HelloController {
+package com.example.productservicefirstproject.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/hello")
+public class HelloController {
+    @GetMapping("/say/{name}")
+    public String sayHello(@PathVariable("name") String name){
+        return "Hello " + name + " This is your first API.";
+    }
 }
