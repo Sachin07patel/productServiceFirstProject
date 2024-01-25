@@ -1,8 +1,11 @@
 package com.example.productservicefirstproject.controllers;
 
+import com.example.productservicefirstproject.exceptions.ProductNotExistsException;
 import com.example.productservicefirstproject.model.Product;
 import com.example.productservicefirstproject.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,21 +23,21 @@ public class ProductController {
     }
     @GetMapping()
     public List<Product> getAllProducts(){
-        return new ArrayList<>();
+
+//        ResponseEntity<List<Product>> response = new ResponseEntity<>(
+//                productService.getAllProducts(), HttpStatus.FORBIDDEN
+//        );
+        return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") Long id){
+    public Product getSingleProduct(@PathVariable("id") Long id) throws ProductNotExistsException {
         return productService.getSingleProduct(id);
     }
 
-    @PostMapping()
+    @PostMapping("/addNewProduct")
     public Product addNewProduct(@RequestBody Product product) {
-        Product p = new Product();
-//        p.setId("1");
-        p.setTitle("A New Product");
-//        p.setPrice("100.00");
-        return p;
+        return productService.addNewProduct(product);
     }
 
     @PatchMapping("/{id}")
