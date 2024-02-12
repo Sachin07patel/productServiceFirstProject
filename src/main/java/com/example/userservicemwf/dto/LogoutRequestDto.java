@@ -1,6 +1,5 @@
 package com.example.userservicemwf.dto;
 
-import com.example.userservicemwf.models.Token;
 import lombok.Getter;
 import lombok.Setter;
 
