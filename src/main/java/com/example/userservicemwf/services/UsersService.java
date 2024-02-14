@@ -66,7 +66,7 @@ public class UsersService {
     }
 
     public void logout(String token){
-        Optional<Token> token1 = tokenRepository.findByValueAndDeleted(token, false);
+        Optional<Token> token1 = tokenRepository.findByValueAndDeletedEquals(token, false);
 
         if(token1.isEmpty()){
             //throw Token not exist or already expired
@@ -76,5 +76,14 @@ public class UsersService {
 
         tkn.setDeleted(true);
         tokenRepository.save(tkn);
+    }
+
+    public User validateToken(String token){
+        Optional<Token> tkn = tokenRepository.findByValueAndDeletedEqualsAndExpiryAtGreaterThan(token , false, new Date());
+        if(tkn.isEmpty()){
+            return null;
+        }
+
+        return tkn.get().getUser();
     }
 }
