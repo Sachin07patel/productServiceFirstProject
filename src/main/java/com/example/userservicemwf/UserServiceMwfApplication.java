@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UserServiceMwfApplication {
 
     public static void main(String[] args) {
+        
         SpringApplication.run(UserServiceMwfApplication.class, args);
     }
 
